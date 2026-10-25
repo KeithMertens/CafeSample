@@ -1,994 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Cafe Carolina — Rustic Garden & Coffee Hideaway | Mendez, Cavite</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Visit Brew &amp; Bites Café in St. Ann, Missouri. Browse the menu, check the map and get directions." />
+<meta name="theme-color" content="#eee6dd" />
+<title>Brew &amp; Bites Café | Coffee in St. Ann, MO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
 <style>
-/* ---------- Design Tokens ---------- */
-:root {
-  --bg: #FBF9F5; 
-  --linen: #F1EBDF; 
-  --surface: #FFFDF9; 
-  --ink: #2C221E; 
-  --muted: #6B5B51;
-  --line: rgba(44, 34, 30, 0.14); 
-  --terra: #C86D51; 
-  --terra-ink: #A4492F; 
-  --sage: #8A9A78; 
-  --sage-soft: #DCE3CF; 
-  --olive: #5E6B3F;
-  --foot: #2C221E; 
-  --foot-ink: #F4ECE0;
-  --shadow: 0 14px 34px -16px rgba(92, 52, 30, 0.28), 0 2px 6px rgba(92, 52, 30, 0.06);
-  --serif: 'Instrument Serif', Georgia, serif;
-  --sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  
-  /* Map Colors */
-  --map-land: #E8E6D9; 
-  --map-park: #CAD5B7; 
-  --map-water: #C3D3CB; 
-  --map-road: #FBF9F5;
-  color-scheme: light;
-}
+:root{color-scheme:light;--paper:#f8f4ef;--paper-deep:#eee6dd;--paper-dark:#dfd3c6;--ink:#32251e;--ink-soft:#67564b;--muted:#76695f;--accent:#6e664c;--accent-dark:#57503b;--white:#fffdfa;--gutter:clamp(1.1rem,3.2vw,2.5rem);--page-width:1040px;--serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif;--ease-out:cubic-bezier(0.23,1,0.32,1)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{min-width:320px;margin:0;background:#4a3b31;color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.6}
+body::before{position:fixed;z-index:-1;inset:0;background:url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=2200&q=85") center/cover no-repeat;content:""}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{color:inherit;font:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid #8a6b45;outline-offset:4px}
+::selection{color:var(--white);background:var(--accent)}
+.page{width:min(var(--page-width),calc(100% - 2*var(--gutter)));margin:clamp(1rem,5vh,3.5rem) auto;overflow:hidden;background:var(--paper);box-shadow:0 18px 70px rgba(32,23,17,.24)}
+.container{width:calc(100% - 2*var(--gutter));margin-inline:auto}
+.site-header{position:relative;z-index:5;background:var(--paper)}
+.nav-wrap{display:flex;min-height:74px;align-items:center;justify-content:space-between;gap:1.5rem}
+.brand{display:inline-flex;flex:0 0 auto;align-items:center;gap:.55rem;font-family:var(--serif);font-size:clamp(1.05rem,2vw,1.35rem);font-weight:700;letter-spacing:-.04em}
+.brand-mark{display:grid;width:33px;aspect-ratio:1;place-items:center;border:1px solid var(--accent);border-radius:50%;color:var(--accent-dark);font-family:var(--serif);font-size:1rem}
+.site-nav{display:flex;align-items:center;justify-content:center;gap:clamp(.65rem,1.6vw,1.35rem);color:var(--ink-soft);font-size:.8rem}
+.site-nav a,.footer-nav a{text-underline-offset:.25em}
+.site-nav a:hover,.footer-nav a:hover{text-decoration:underline}
+.button{display:inline-flex;min-height:44px;align-items:center;justify-content:center;padding:.65rem 1.25rem;border:0;background:var(--accent);color:var(--white);font-size:.84rem;font-weight:600;transition:background-color 160ms ease,transform 160ms ease;cursor:pointer}
+.button:hover{transform:translateY(-1px);background:var(--accent-dark)}
+.menu-toggle{display:none;min-width:44px;min-height:44px;padding-inline:.8rem;border:1px solid var(--paper-dark);background:transparent;font-size:.8rem;font-weight:600;cursor:pointer}
+.mobile-menu{display:none;padding-bottom:1rem}
+.mobile-menu.open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.mobile-menu a:not(.button){padding:.55rem 0;color:var(--ink-soft)}
+.hero{position:relative;display:grid;min-height:clamp(300px,38vw,450px);align-items:center;background:url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1800&q=90") center 54%/cover no-repeat;color:var(--white);isolation:isolate}
+.hero::before{position:absolute;z-index:-1;inset:0;background:rgba(37,27,21,.46);content:"";animation:room-drift 28s ease-in-out infinite alternate}
+@keyframes room-drift{to{transform:scale(1.035)}}
+.hero-copy{position:relative;z-index:1;width:min(550px,82%);padding-block:3.5rem}
+h1,h2,h3,h4,p{margin:0}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.035em;line-height:1.12;text-wrap:balance}
+h1{max-width:15ch;font-size:clamp(2.8rem,5.6vw,4.4rem)}
+h2{font-size:clamp(1.8rem,3.5vw,2.5rem)}
+h3{font-size:clamp(1.45rem,2.4vw,1.8rem)}
+.hero-copy p{max-width:38ch;margin-top:.85rem;color:rgba(255,253,250,.92);font-size:1.05rem}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:1.45rem}
+.hero .button{background:var(--accent)}
+.hero .button:hover{background:#6e654e}
+.section{padding-block:clamp(2.5rem,5vw,4rem)}
+.section-title{display:grid;grid-template-columns:minmax(1rem,1fr) auto minmax(1rem,1fr);align-items:center;gap:1rem;margin-bottom:1.8rem;text-align:center}
+.section-title::before,.section-title::after{height:2px;background:var(--paper-dark);content:""}
+.section-title h2{font-size:clamp(1.7rem,3vw,2.2rem)}
+.about-intro{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);align-items:center;gap:clamp(1.25rem,3vw,2rem)}
+.about-photo,.location-photo{width:100%;height:100%;min-height:180px;object-fit:cover}
+.about-photo{aspect-ratio:1.5}
+.about-copy{padding:.4rem}
+.about-copy p,.location-copy p,.review-copy p{margin-top:.7rem;color:var(--ink-soft);font-size:.94rem}
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1C1613; 
-    --linen: #241C17; 
-    --surface: #2B221C; 
-    --ink: #F4ECE0; 
-    --muted: #BBAB9C;
-    --line: rgba(244, 236, 224, 0.16); 
-    --terra: #D98166; 
-    --terra-ink: #EBA088; 
-    --sage: #A9B890; 
-    --sage-soft: #38412E;
-    --foot: #120E0C; 
-    --shadow: 0 14px 34px -16px rgba(0, 0, 0, 0.7);
-    --map-land: #2F3027; 
-    --map-park: #3A4430; 
-    --map-water: #2B3A38; 
-    --map-road: #4A3D33; 
-    color-scheme: dark;
-  }
-}
+/* ===== Menu book ===== */
+.menu-section{padding-top:0}
+.mb-intro{max-width:60ch;margin:-.9rem auto 1.6rem;color:var(--ink-soft);font-size:.94rem;text-align:center}
+.mb-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:1.2rem}
+.mb-tab{min-height:44px;padding:.55rem 1rem;border:1px solid var(--paper-dark);background:transparent;color:var(--ink-soft);font-size:.84rem;font-weight:600;cursor:pointer;transition:background-color 160ms ease,color 160ms ease}
+.mb-tab:hover{background:var(--paper-deep)}
+.mb-tab[aria-current="true"]{border-color:var(--accent);background:var(--accent);color:var(--white)}
+.mb-book{position:relative;display:grid;grid-template-columns:1fr 1fr;background:var(--paper-deep);box-shadow:0 14px 40px rgba(50,37,30,.2);outline-offset:6px;touch-action:pan-y}
+.mb-book::after{position:absolute;top:0;bottom:0;left:50%;width:36px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(50,37,30,.14) 50%,transparent);content:"";pointer-events:none}
+.mb-page{display:flex;min-height:580px;flex-direction:column;padding:clamp(1.4rem,3.4vw,2.6rem);background:var(--paper);color:var(--ink);backface-visibility:hidden}
+.mb-page[hidden]{display:none}
+.mb-page:nth-child(even){background:#fbf8f3}
+.mb-page.turn-fwd{transform-origin:left center;animation:mb-turn-fwd 520ms var(--ease-out) var(--turn-delay,0ms) both}
+.mb-page.turn-back{transform-origin:right center;animation:mb-turn-back 520ms var(--ease-out) var(--turn-delay,0ms) both}
+.mb-book.book-in{animation:mb-book-in 480ms var(--ease-out) both}
+@keyframes mb-turn-fwd{from{opacity:0;transform:perspective(1400px) rotateY(-28deg)}to{opacity:1;transform:perspective(1400px) rotateY(0)}}
+@keyframes mb-turn-back{from{opacity:0;transform:perspective(1400px) rotateY(28deg)}to{opacity:1;transform:perspective(1400px) rotateY(0)}}
+@keyframes mb-book-in{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+.mb-cover{align-items:center;justify-content:space-between;border:2px solid #8a7d5e;background:#32251e!important;color:var(--paper);text-align:center}
+.mb-cover .mb-kicker,.mb-cover em,.mb-cover small{color:var(--paper-dark)}
+.mb-cover h3{font-size:clamp(2.4rem,5vw,3.3rem);line-height:1}
+.mb-cover em{font-family:var(--serif);font-size:1.3rem}
+.mb-cover small{font-size:.9rem}
+.mb-cover-mid{display:grid;justify-items:center;gap:1rem}
+.mb-rule{width:56px;border-top:2px solid #8a7d5e}
+.mb-kicker{color:var(--accent-dark);font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+.mb-head{padding-bottom:1.1rem;margin-bottom:1.5rem;border-bottom:2px solid var(--paper-dark)}
+.mb-head h3{margin-top:.4rem;font-size:clamp(2.1rem,4vw,2.9rem)}
+.mb-head p{margin-top:.5rem;color:var(--ink-soft);font-size:.94rem}
+.mb-items{display:grid;gap:1.05rem;margin:0;padding:0;list-style:none}
+.mb-line{display:flex;align-items:baseline;gap:.6rem}
+.mb-line h4{font-family:var(--serif);font-size:1.35rem;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.mb-line i{flex:1;min-width:1rem;border-bottom:2px dotted #b9a995}
+.mb-price{color:var(--accent-dark);font-size:.82rem;font-weight:600;white-space:nowrap}
+.mb-item p{margin-top:.25rem;color:var(--ink-soft);font-size:.93rem}
+.mb-tag{display:inline-block;margin-top:.3rem;color:var(--muted);font-size:.78rem;font-style:italic}
+.mb-note{margin-top:auto;padding:.8rem 1rem;background:var(--paper-deep);color:var(--accent-dark);font-size:.86rem}
+.mb-items+.mb-note{margin-top:1.6rem}
+.mb-facts{display:grid;gap:1rem;margin:0}
+.mb-facts div{padding-bottom:.9rem;border-bottom:2px solid var(--paper-dark)}
+.mb-facts dt{color:var(--accent-dark);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.mb-facts dd{margin:.2rem 0 0;font-family:var(--serif);font-size:1.3rem;line-height:1.3}
+.mb-facts a{text-decoration:underline;text-underline-offset:.2em}
+.mb-page .button{align-self:flex-start;margin-top:1.2rem}
+.mb-book.closed{grid-template-columns:1fr;width:min(100%,400px);margin-inline:auto}
+.mb-book.closed::after{display:none}
+.mb-book.closed .mb-cover{cursor:pointer;transition:transform 200ms ease}
+.mb-book.closed .mb-cover:hover{transform:translateY(-3px)}
+.mb-book:not(.closed) .mb-open{display:none}
+.mb-cover .button{align-self:center;margin-top:.4rem;border:1px solid #8a7d5e}
+.mb-controls[hidden]{display:none}
+.mb-mid{display:grid;justify-items:center;gap:.2rem}
+.mb-close{padding:.3rem .6rem;border:0;background:none;color:var(--accent-dark);font-size:.85rem;font-weight:600;text-decoration:underline;text-underline-offset:.2em;cursor:pointer;min-height:44px}
+.mb-controls{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.1rem}
+.mb-controls .button:disabled{opacity:.4;cursor:default;transform:none}
+.mb-count{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+.menu-call{display:inline-flex;margin-top:1.1rem;color:var(--accent-dark);font-size:.88rem;font-weight:600;text-decoration:underline;text-underline-offset:.2em}
 
-:root[data-theme="dark"] {
-  --bg: #1C1613; 
-  --linen: #241C17; 
-  --surface: #2B221C; 
-  --ink: #F4ECE0; 
-  --muted: #BBAB9C;
-  --line: rgba(244, 236, 224, 0.16); 
-  --terra: #D98166; 
-  --terra-ink: #EBA088; 
-  --sage: #A9B890; 
-  --sage-soft: #38412E;
-  --foot: #120E0C; 
-  --shadow: 0 14px 34px -16px rgba(0, 0, 0, 0.7);
-  --map-land: #2F3027; 
-  --map-park: #3A4430; 
-  --map-water: #2B3A38; 
-  --map-road: #4A3D33; 
-  color-scheme: dark;
-}
+.location-section{background:#f0e9e1}
+.location-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:1rem}
+.location-photo{aspect-ratio:1.2}
+.map-frame,.map-frame iframe{width:100%;min-height:260px;height:100%;border:0}
+.location-copy{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:1.5rem;margin-top:1.4rem}
+.location-copy p+p{margin-top:.2rem}
+.plus-code{color:var(--muted);font-size:.9rem}
+.reviews-section{background:var(--paper)}
+.reviews-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3rem)}
+.review-copy,.contact-copy{min-width:0}
+.rating-summary{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:1.25rem;margin-top:.8rem}
+.rating-score{font-family:var(--serif);font-size:3.3rem;line-height:1}
+.rating-detail{color:var(--muted);font-size:.86rem}
+.rating-bars{display:grid;gap:.42rem;margin-top:1rem}
+.rating-row{display:grid;grid-template-columns:4.2rem minmax(0,1fr) 2rem;align-items:center;gap:.6rem;color:var(--ink-soft);font-size:.8rem}
+.rating-track{height:8px;overflow:hidden;background:var(--paper-dark)}
+.rating-fill{height:100%;background:var(--accent)}
+.rating-row output{text-align:right;font-variant-numeric:tabular-nums}
+.review-link{display:inline-flex;margin-top:1.1rem;color:var(--accent-dark);font-size:.9rem;font-weight:600;text-decoration:underline;text-underline-offset:.2em}
+.contact-copy{padding-left:clamp(1rem,3vw,2rem);border-left:2px solid var(--paper-dark)}
+.contact-copy p{margin-top:.7rem;color:var(--ink-soft)}
+.contact-phone{display:inline-flex;margin-top:1rem;font-family:var(--serif);font-size:clamp(1.35rem,2.4vw,1.8rem);text-decoration:underline;text-underline-offset:.2em}
+.contact-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.button-outline{border:1px solid var(--accent);background:transparent;color:var(--accent-dark)}
+.button-outline:hover{color:var(--white)}
+.site-footer{padding-block:1.3rem;background:var(--paper-deep)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.footer-brand{color:var(--ink-soft);font-family:var(--serif);font-size:.95rem}
+.footer-nav{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;color:var(--ink-soft);font-size:.82rem}
+.reveal{opacity:1;transform:none}
+.js-ready .reveal:not(.visible){opacity:0;transform:translateY(14px)}
+.js-ready .reveal{transition:opacity 520ms ease-out var(--reveal-delay,0ms),transform 520ms ease-out var(--reveal-delay,0ms)}
+.js-ready .reveal.visible{opacity:1;transform:translateY(0)}
 
-/* ---------- Base ---------- */
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font: 400 clamp(1rem, .96rem + .2vw, 1.0625rem)/1.65 var(--sans);
-  -webkit-font-smoothing: antialiased;
-  padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
-}
-
-/* Subtle Paper Grain Overlay */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  pointer-events: none;
-  opacity: .07;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .12 0 0 0 0 .08 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-h1, h2, h3 {
-  font-family: var(--serif);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -.01em;
-  margin: 0;
-}
-h2 { font-size: clamp(2.1rem, 1.4rem + 3.4vw, 3.6rem); }
-p { margin: 0; }
-a { color: inherit; }
-:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; border-radius: 8px; }
-
-.wrap { width: min(1180px, 100% - 2.5rem); margin-inline: auto; }
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: .75rem 1.5rem;
-  border-radius: 999px;
-  font: 600 .95rem var(--sans);
-  text-decoration: none;
-  border: 1.5px solid transparent;
-  cursor: pointer;
-  transition: transform .25s ease, background-color .25s ease, box-shadow .25s ease;
-}
-.btn-primary {
-  background: var(--terra);
-  color: #2C221E;
-  box-shadow: 0 8px 20px -10px rgba(200, 109, 81, .9);
-}
-.btn-primary:hover { transform: translateY(-2px); }
-.btn-ghost { border-color: currentColor; background: transparent; }
-.btn-ghost:hover { background: rgba(255, 255, 255, .12); }
-
-/* ---------- Header & Dock Navigation ---------- */
-.top {
-  position: fixed;
-  inset: 0 0 auto 0;
-  z-index: 50;
-  padding: env(safe-area-inset-top, 0px) 0 0;
-  color: #FBF9F5;
-  transition: background-color .3s, color .3s, box-shadow .3s;
-}
-.top.solid {
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  color: var(--ink);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 1px 0 var(--line);
-}
-.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-.brand { font: 400 1.85rem var(--serif); text-decoration: none; letter-spacing: -0.02em; }
-.top nav { display: none; gap: 2rem; align-items: center; }
-.top nav a { text-decoration: none; font-weight: 500; font-size: .95rem; opacity: .9; }
-.top nav a:hover { text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--terra); }
-.top .btn { min-height: 42px; padding: .5rem 1.2rem; font-size: .9rem; }
-
-.theme-toggle {
-  background: transparent;
-  border: 1px solid var(--line);
-  color: inherit;
-  border-radius: 999px;
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  padding: 0;
-}
-
-.dock {
-  position: fixed;
-  inset: auto 0 0 0;
-  z-index: 50;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: .4rem .5rem calc(.4rem + env(safe-area-inset-bottom, 0px));
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid var(--line);
-}
-.dock a {
-  display: grid;
-  place-items: center;
-  min-height: 52px;
-  text-decoration: none;
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--muted);
-  border-radius: 16px;
-}
-.dock a:active { background: var(--sage-soft); color: var(--ink); }
-
-@media(min-width: 820px) {
-  .top nav { display: flex; }
-  .dock { display: none; }
-  body { padding-bottom: 0; }
-}
-
-/* ---------- Hero Section ---------- */
-.hero {
-  position: relative;
-  min-height: 100svh;
-  display: grid;
-  align-items: end;
-  overflow: hidden;
-  background: #2a1d16;
-  color: #FBF9F5;
-  isolation: isolate;
-}
-.scene { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: radial-gradient(120% 90% at 70% 40%, transparent 35%, rgba(20, 12, 8, .75)),
-              linear-gradient(to top, rgba(20, 12, 8, .85), transparent 55%);
-}
-
-.steam path {
-  fill: none;
-  stroke: #FFF1DA;
-  stroke-width: 5;
-  stroke-linecap: round;
-  opacity: 0;
-  animation: rise 6s ease-in-out infinite;
-}
-.steam path:nth-child(2) { animation-delay: 1.8s; }
-.steam path:nth-child(3) { animation-delay: 3.6s; }
-
-@keyframes rise {
-  0% { opacity: 0; transform: translateY(20px); }
-  30% { opacity: .45; }
-  100% { opacity: 0; transform: translateY(-70px); }
-}
-
-.glass {
-  width: min(560px, 100%);
-  margin: 0 0 clamp(1.5rem, 6vh, 4rem);
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  border-radius: 28px 28px 28px 6px;
-  background: rgba(251, 249, 245, 0.14);
-  border: 1px solid rgba(255, 244, 225, 0.28);
-  backdrop-filter: blur(18px) saturate(1.25);
-  -webkit-backdrop-filter: blur(18px) saturate(1.25);
-  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
-}
-.glass .kicker { font: 500 .95rem var(--sans); color: #FFE3C2; margin-bottom: .9rem; display: flex; align-items: center; gap: .5rem; }
-.glass .kicker::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #96E072; }
-.glass h1 { font-size: clamp(2.5rem, 1.2rem + 5.5vw, 4.5rem); margin-bottom: 1rem; }
-.glass p.lede { color: #F6EBDD; max-width: 44ch; margin-bottom: 1.6rem; font-size: 1.05rem; }
-.cta { display: flex; flex-wrap: wrap; gap: .75rem; }
-.hero .btn-ghost { color: #FBF9F5; }
-
-.glass > * { animation: enter .9s cubic-bezier(.2, .7, .2, 1) both; }
-.glass > :nth-child(2) { animation-delay: .15s; }
-.glass > :nth-child(3) { animation-delay: .3s; }
-.glass > :nth-child(4) { animation-delay: .45s; }
-@keyframes enter { from { opacity: 0; transform: translateY(22px); } }
-
-/* ---------- Story / Space Section ---------- */
-.story { padding: clamp(4.5rem, 10vw, 8rem) 0; }
-.story .wrap { display: grid; gap: 3rem; align-items: center; }
-.collage { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1rem; align-items: start; }
-.arch { margin: 0; border-radius: 999px 999px 24px 24px; overflow: hidden; position: relative; box-shadow: var(--shadow); }
-.arch svg { display: block; width: 100%; height: 100%; }
-.arch figcaption {
-  position: absolute;
-  inset: auto 0 .9rem;
-  text-align: center;
-  font: italic 1rem var(--serif);
-  color: #FBF9F5;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, .6);
-}
-.a1 { aspect-ratio: 3 / 4.3; }
-.a2 { aspect-ratio: 3 / 4; margin-top: 3.5rem; border-radius: 24px 24px 24px 120px; }
-.story h2 { margin-bottom: 1.3rem; max-width: 14ch; }
-.story .copy p { max-width: 52ch; color: var(--muted); margin-bottom: 1rem; }
-.details { margin: 2rem 0 0; display: grid; gap: 1.2rem; }
-.details div { padding-left: 1.1rem; border-left: 3px solid var(--sage); }
-.details dt { font: 400 1.45rem var(--serif); color: var(--ink); }
-.details dd { margin: .1rem 0 0; color: var(--muted); font-size: .96rem; }
-@media(min-width: 900px) { .story .wrap { grid-template-columns: 7fr 5fr; gap: 5rem; } }
-
-/* ---------- Menu Section ---------- */
-.menu { background: var(--linen); border-radius: 44px 44px 0 0; padding: clamp(4rem, 9vw, 7rem) 0; }
-.menu-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 2rem; margin-bottom: 2rem; }
-.menu-head p { color: var(--muted); max-width: 40ch; }
-.tabs { display: flex; gap: .6rem; overflow-x: auto; scroll-snap-type: x proximity; padding: .3rem .1rem 1rem; margin-bottom: .5rem; scrollbar-width: none; }
-.tabs::-webkit-scrollbar { display: none; }
-.tab {
-  flex: none;
-  scroll-snap-align: start;
-  min-height: 46px;
-  padding: .6rem 1.3rem;
-  border-radius: 999px;
-  border: 1.5px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-  font: 600 .95rem var(--sans);
-  cursor: pointer;
-  transition: background-color .25s, color .25s, border-color .25s;
-}
-.tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-
-.grid { display: grid; gap: 1.4rem; }
-@media(min-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 1.6rem; } }
-@media(min-width: 1040px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 1.8rem; } }
-
-.item {
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  border-radius: 28px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  animation: swap .55s cubic-bezier(.2, .7, .2, 1) both;
-  animation-delay: calc(var(--i) * 60ms);
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-.item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -18px rgba(92, 52, 30, 0.35);
-}
-
-.item-img-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: var(--linen);
-}
-.item-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .5s ease;
-}
-.item:hover .item-img {
-  transform: scale(1.06);
-}
-
-.item-content {
-  padding: 1.4rem 1.6rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-@keyframes swap { from { opacity: 0; transform: translateY(14px); } }
-.item header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
-.item h3 { font-size: 1.55rem; }
-.price { font: 600 1.05rem var(--sans); color: var(--terra-ink); white-space: nowrap; }
-.item p { color: var(--muted); font-size: .95rem; margin: .5rem 0 1rem; flex-grow: 1; line-height: 1.55; }
-.vibe-tag { display: inline-flex; align-items: center; align-self: flex-start; padding: .25rem .85rem; border-radius: 999px; background: var(--sage-soft); color: var(--ink); font: 600 .78rem var(--sans); letter-spacing: .01em; }
-.note { margin-top: 2rem; color: var(--muted); font-size: .9rem; text-align: center; }
-
-/* ---------- Location / Find Us Section ---------- */
-.find { padding: clamp(4.5rem, 9vw, 7rem) 0; background: var(--linen); }
-.find .wrap { display: grid; gap: 2.5rem; }
-.find h2 { margin-bottom: 1.4rem; }
-.addr { font-size: 1.1rem; margin-bottom: 1.6rem; font-weight: 500; }
-.addr small { display: block; color: var(--muted); font-size: .92rem; font-weight: 400; margin-top: .3rem; }
-.hours { margin: 0 0 1.8rem; max-width: 380px; }
-.hours div { display: flex; justify-content: space-between; padding: .6rem 0; border-bottom: 1px dashed var(--line); }
-.hours dt { font-weight: 500; }
-.hours dd { margin: 0; color: var(--muted); }
-.contact { display: flex; flex-wrap: wrap; gap: .7rem; }
-.find .btn-ghost { color: var(--ink); border-color: var(--line); }
-.find .btn-ghost:hover { background: var(--sage-soft); }
-
-.map { position: relative; border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); min-height: 380px; background: var(--map-land); }
-.map svg { display: block; width: 100%; height: 100%; min-height: 380px; }
-.m-land { fill: var(--map-land); }
-.m-park { fill: var(--map-park); }
-.m-water { fill: var(--map-water); }
-.m-road { fill: none; stroke: var(--map-road); stroke-linecap: round; }
-.m-label { font: italic 14px var(--serif); fill: var(--muted); }
-.m-contour { fill: none; stroke: var(--sage); stroke-width: 1; opacity: .45; }
-.pulse { transform-origin: 320px 210px; animation: ping 2.6s ease-out infinite; }
-@keyframes ping { 0% { transform: scale(.4); opacity: .7; } 100% { transform: scale(2.4); opacity: 0; } }
-.pin { cursor: pointer; }
-.pop {
-  position: absolute;
-  left: 50%;
-  top: 12%;
-  translate: -50% 0;
-  width: min(280px, 85%);
-  padding: 1.1rem 1.2rem;
-  background: var(--surface);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  font-size: .92rem;
-  transition: opacity .25s, transform .25s;
-}
-.pop[hidden] { display: block; opacity: 0; transform: translateY(8px); pointer-events: none; }
-.pop strong { display: block; font: 400 1.35rem var(--serif); margin-bottom: .2rem; }
-@media(min-width: 900px) { .find .wrap { grid-template-columns: 5fr 6fr; gap: 4.5rem; align-items: center; } }
-
-/* ---------- Footer ---------- */
-footer { background: var(--foot); color: var(--foot-ink); padding: clamp(3.5rem, 8vw, 5.5rem) 0 2rem; }
-footer .wrap { display: grid; gap: 2.5rem; }
-footer h3 { font-size: 1.9rem; margin-bottom: .7rem; }
-footer p, footer li { color: #D8C9B8; font-size: .95rem; }
-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
-footer a { text-underline-offset: 5px; text-decoration: underline; text-decoration-color: rgba(244, 236, 224, .3); }
-footer a:hover { text-decoration-color: var(--terra); }
-
-.journal { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
-.journal input {
-  flex: 1 1 200px;
-  min-height: 48px;
-  padding: .6rem 1.1rem;
-  border-radius: 999px;
-  border: 1.5px solid rgba(244, 236, 224, .3);
-  background: rgba(244, 236, 224, .07);
-  color: var(--foot-ink);
-  font: inherit;
-}
-.journal input::placeholder { color: #B5A594; }
-.thanks { min-height: 1.5em; margin-top: .6rem; color: #CFE0B5 !important; font-weight: 500; }
-.legal {
-  margin-top: 3rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid rgba(244, 236, 224, .14);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: .5rem;
-  font-size: .85rem;
-  color: #B5A594;
-}
-@media(min-width: 900px) { footer .wrap { grid-template-columns: 1.1fr 1.4fr .8fr; gap: 4rem; } }
-
-/* ---------- Scroll Reveals ---------- */
-.js .rv {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform .8s cubic-bezier(.2, .7, .2, 1);
-  transition-delay: calc(var(--d, 0) * 110ms);
-}
-.js .rv.in { opacity: 1; transform: none; }
-@media(prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .js .rv { opacity: 1; transform: none; }
-}
+@media (max-width:860px){.mb-book{grid-template-columns:1fr}.mb-book::after{display:none}.mb-page{min-height:520px}}
+@media (max-width:760px){
+.page{margin-block:1rem}.nav-wrap{min-height:66px}
+.site-nav,.nav-wrap>.button{display:none}
+.menu-toggle{display:inline-grid;place-items:center}
+.hero{min-height:340px}.hero-copy{width:min(500px,92%)}
+.about-intro,.location-grid,.reviews-grid{grid-template-columns:1fr}
+.about-photo{aspect-ratio:1.65}.location-grid{gap:.8rem}
+.location-photo,.map-frame,.map-frame iframe{min-height:230px}
+.location-copy{grid-template-columns:1fr;align-items:start;gap:1rem}
+.contact-copy{padding-top:1.6rem;padding-left:0;border-top:2px solid var(--paper-dark);border-left:0}}
+@media (max-width:480px){
+:root{--gutter:1rem}.page{width:100%;margin:0}
+.hero{min-height:330px}.hero::before{background:rgba(37,27,21,.48)}
+.hero-copy{width:100%;padding-block:2.5rem}
+h1{max-width:15ch;font-size:clamp(2.5rem,10vw,3.2rem)}
+.section{padding-block:2.35rem}.section-title{gap:.6rem;margin-bottom:1.3rem}
+.about-copy{padding:0}.rating-summary{gap:.9rem}
+.footer-inner{align-items:flex-start;flex-direction:column}}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+.js-ready .reveal:not(.visible){opacity:1;transform:none}
+.mb-page.turn-fwd,.mb-page.turn-back,.mb-book.book-in{animation:none}}
 </style>
 </head>
 <body>
-
-<header class="top" id="top">
-  <div class="wrap">
-    <a class="brand" href="#hero" aria-label="Cafe Carolina home">Cafe Carolina</a>
-    <nav aria-label="Primary navigation">
-      <a href="#space">Our Space</a>
-      <a href="#menu">Menu</a>
-      <a href="#visit">Visit Us</a>
-      <a href="#journal">Journal</a>
-      <button class="theme-toggle" id="themeBtn" aria-label="Toggle Dark or Light mode">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      </button>
+<main class="page" id="top">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Brew &amp; Bites Café home"><span class="brand-mark" aria-hidden="true">B</span><span>Brew &amp; Bites Café</span></a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#top">Home</a><a href="#about">About Us</a><a href="#menu">Cafe Menu</a><a href="#location">Store Location</a><a href="#reviews">Customer Reviews</a>
+      </nav>
+      <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Brew+%26+Bites+Caf%C3%A9+St+Ann+MO" target="_blank" rel="noopener noreferrer">Get Directions</a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+    </div>
+    <nav class="mobile-menu container" id="mobile-menu" aria-label="Mobile navigation">
+      <a href="#about">About Us</a><a href="#menu">Cafe Menu</a><a href="#location">Store Location</a><a href="#reviews">Customer Reviews</a>
+      <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Brew+%26+Bites+Caf%C3%A9+St+Ann+MO" target="_blank" rel="noopener noreferrer">Get directions</a>
     </nav>
-    <a class="btn btn-primary" href="#visit">Find Directions</a>
-  </div>
-</header>
+  </header>
 
-<!-- Mobile Navigation Dock -->
-<nav class="dock" aria-label="Quick navigation">
-  <a href="#space">Our Space</a>
-  <a href="#menu">Menu</a>
-  <a href="#visit">Visit</a>
-  <a href="#journal">Journal</a>
-</nav>
-
-<main>
-<!-- HERO SECTION -->
-<section class="hero" id="hero">
-  <!-- Atmospheric Vector Scene -->
-  <svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A120C"/><stop offset="1" stop-color="#3A251A"/></linearGradient>
-      <radialGradient id="glow" cx="50%" cy="42%" r="62%"><stop offset="0" stop-color="#FFE2AE"/><stop offset=".55" stop-color="#E9A466"/><stop offset="1" stop-color="#9B5A37"/></radialGradient>
-      <radialGradient id="lamp"><stop offset="0" stop-color="#FFE2B0" stop-opacity=".85"/><stop offset="1" stop-color="#FFE2B0" stop-opacity="0"/></radialGradient>
-    </defs>
-    <rect width="1600" height="900" fill="url(#wall)"/>
-    <!-- Arch Window into Garden -->
-    <path d="M960 770V340a240 240 0 0 1 480 0v430Z" fill="url(#glow)"/>
-    <g stroke="#2C1B12" stroke-width="12" fill="none"><path d="M1200 100V770M960 440H1440M960 610H1440"/><path d="M960 770V340a240 240 0 0 1 480 0v430Z" stroke-width="18"/></g>
-    <!-- Garden Foliage Silhouette -->
-    <g fill="#5E6B3F" opacity=".85">
-      <ellipse cx="1010" cy="700" rx="75" ry="28" transform="rotate(-30 1010 700)"/>
-      <ellipse cx="1080" cy="670" rx="68" ry="24" transform="rotate(20 1080 670)"/>
-      <ellipse cx="1360" cy="690" rx="76" ry="26" transform="rotate(35 1360 690)"/>
-      <ellipse cx="1300" cy="720" rx="64" ry="22" transform="rotate(-15 1300 720)"/>
-    </g>
-    <!-- Warm Ambient Lamps -->
-    <g><circle cx="280" cy="300" r="190" fill="url(#lamp)"/><circle cx="560" cy="360" r="170" fill="url(#lamp)"/><circle cx="780" cy="270" r="150" fill="url(#lamp)"/></g>
-    <g stroke="#1a110c" stroke-width="3"><path d="M280 0V250M560 0V310M780 0V222"/></g>
-    <g fill="#2C221E"><path d="M230 290a50 50 0 0 1 100 0Z"/><path d="M515 350a45 45 0 0 1 90 0Z"/><path d="M738 262a42 42 0 0 1 84 0Z"/></g>
-    <!-- Wooden Espresso Counter -->
-    <rect y="772" width="1600" height="128" fill="#1d1410"/>
-    <rect y="752" width="1600" height="24" fill="#6b4630"/>
-    <!-- Ceramic Cups -->
-    <g fill="#F2E6D3">
-      <path d="M390 752v-44h60v44a30 18 0 0 1-60 0Z"/>
-      <path d="M650 752v-36h52v36a26 16 0 0 1-52 0Z"/>
-      <path d="M800 752v-30h46v30a23 14 0 0 1-46 0Z"/>
-    </g>
-    <!-- Rising Coffee Steam -->
-    <g class="steam" transform="translate(420 700)">
-      <path d="M0 0c-14-22 14-34 0-58"/>
-      <path d="M-16 0c-14-22 14-34 0-58" transform="translate(32 0)"/>
-      <path d="M0 0c-14-22 14-34 0-58" transform="translate(-6 0)"/>
-    </g>
-  </svg>
-
-  <div class="wrap">
-    <div class="glass">
-      <p class="kicker">Mendez – Tagaytay Highlands • Open Daily from 7:00 AM</p>
-      <h1>Slow mornings in a lush garden hideaway.</h1>
-      <p class="lede">Artisanal Batangas Barako drip, warm sourdough pastries, and quiet al-fresco garden tables along the ridge breeze. Stay as long as your cup lasts.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="#menu">Explore Garden Menu</a>
-        <a class="btn btn-ghost" href="#visit">Get Directions</a>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-copy">
+        <h1 class="reveal" id="hero-title">Warm brews,<br />cozy spaces</h1>
+        <p class="reveal">Find Brew &amp; Bites Café in St. Ann, Missouri.</p>
+        <div class="hero-actions reveal">
+          <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Brew+%26+Bites+Caf%C3%A9+St+Ann+MO" target="_blank" rel="noopener noreferrer">Get Directions</a>
+          <a href="#menu">Explore cafe favorites</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- STORY SECTION -->
-<section class="story" id="space">
-  <div class="wrap">
-    <div class="collage">
-      <figure class="arch a1 rv">
-        <svg viewBox="0 0 300 430" preserveAspectRatio="xMidYMid slice" aria-label="Garden patio with sunlight filtering through leaves">
-          <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3C48E"/><stop offset="1" stop-color="#C86D51"/></linearGradient></defs>
-          <rect width="300" height="430" fill="url(#g1)"/>
-          <g stroke="#8a4a33" stroke-width="5" opacity=".55" fill="none"><path d="M150 40V430M20 200H280"/></g>
-          <g fill="#5E6B3F">
-            <ellipse cx="70" cy="330" rx="46" ry="14" transform="rotate(-35 70 330)"/>
-            <ellipse cx="110" cy="300" rx="40" ry="12" transform="rotate(25 110 300)"/>
-            <ellipse cx="230" cy="340" rx="46" ry="14" transform="rotate(35 230 340)"/>
-          </g>
-          <rect y="380" width="300" height="50" fill="#2C221E" opacity=".85"/>
-        </svg>
-        <figcaption>Al-fresco garden patio, Mendez breeze</figcaption>
-      </figure>
+  <section class="section menu-section" id="menu" aria-labelledby="menu-title">
+    <div class="container">
+      <div class="section-title reveal"><h2 class="reveal" id="menu-title">Our Menu Book</h2></div>
+      <p class="mb-intro reveal">Flip through our coffee, breakfast and favorites. Check with the cafe for today's selection, availability, and prices.</p>
 
-      <figure class="arch a2 rv" style="--d:2">
-        <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-label="Fresh drip coffee in handmade pottery cup">
-          <rect width="300" height="400" fill="#DCE3CF"/>
-          <circle cx="220" cy="90" r="46" fill="#F6EEDF"/>
-          <rect y="290" width="300" height="110" fill="#8a5a3b"/>
-          <path d="M95 290v-70h110v70a55 34 0 0 1-110 0Z" fill="#FBF9F5"/>
-          <path d="M205 240h24a22 22 0 0 1 0 44h-24" fill="none" stroke="#FBF9F5" stroke-width="12"/>
-          <ellipse cx="150" cy="222" rx="55" ry="10" fill="#4a2e1d"/>
-        </svg>
-        <figcaption>Artisanal Barako & local beans</figcaption>
-      </figure>
-    </div>
+      <div class="mb-tabs reveal" role="group" aria-label="Jump to a menu page">
+        <button class="mb-tab" type="button" data-go="0">Cover</button>
+        <button class="mb-tab" type="button" data-go="1">Coffee</button>
+        <button class="mb-tab" type="button" data-go="2">Breakfast</button>
+        <button class="mb-tab" type="button" data-go="3">Platters</button>
+        <button class="mb-tab" type="button" data-go="4">Mains</button>
+        <button class="mb-tab" type="button" data-go="5">Sweets</button>
+        <button class="mb-tab" type="button" data-go="6">Sides</button>
+        <button class="mb-tab" type="button" data-go="7">Find Us</button>
+      </div>
 
-    <div class="copy">
-      <h2 class="rv">Rooted in Cavite warmth, crafted for lingering.</h2>
-      <p class="rv" style="--d:1">Cafe Carolina was built as a serene garden escape just off the main Tagaytay-Mendez highway. Designed with natural timber, garden greenery, and cozy shaded alcoves, it offers respite from the city line.</p>
-      <p class="rv" style="--d:2">Here, nothing is rushed. We pour single-origin Cavite and Batangas beans to order, bake our savory tarts fresh every dawn, and keep open tables under the trees for conversations that stretch into the afternoon.</p>
-      
-      <dl class="details">
-        <div class="rv" style="--d:3">
-          <dt>Batangas & Cavite Single Origin</dt>
-          <dd>Deep, rich Barako and Liberica dark roasts sourced directly from nearby high-elevation growers.</dd>
+      <div class="mb-book closed reveal" id="menu-book" tabindex="0" role="region" aria-roledescription="menu book" aria-label="Brew &amp; Bites Café menu book, closed. Press the Open the menu button, or the right arrow key, to open it.">
+        <article class="mb-page mb-cover" aria-label="Cover">
+          <span class="mb-kicker">St. Ann &middot; Missouri</span>
+          <div class="mb-cover-mid">
+            <svg width="76" height="76" viewBox="0 0 84 84" fill="none" stroke="#f8f4ef" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 36h44v14a20 20 0 0 1-20 20h-4a20 20 0 0 1-20-20z"/><path d="M60 41h5a8 8 0 0 1 0 16h-7"/><path d="M30 12c-4 5 4 8 0 14M42 12c-4 5 4 8 0 14M54 12c-4 5 4 8 0 14"/></svg>
+            <h3>Brew &amp;<br />Bites</h3>
+            <em>Café</em>
+            <span class="mb-rule"></span>
+            <span class="mb-kicker">The Menu</span>
+            <button class="button mb-open" type="button">Open the menu</button>
+          </div>
+          <small>Warm brews, cozy spaces.</small>
+        </article>
+        <!-- Menu pages are built from the MENU data in the script below -->
+      </div>
+
+      <div class="mb-controls" id="mb-controls" hidden>
+        <button class="button" type="button" id="mb-prev">&larr; Previous</button>
+        <div class="mb-mid">
+          <span class="mb-count" id="mb-count" aria-live="polite"></span>
+          <button class="mb-close" type="button" id="mb-close">Close book</button>
         </div>
-        <div class="rv" style="--d:4">
-          <dt>Al-Fresco Garden Nooks</dt>
-          <dd>Shaded outdoor tables surrounded by native flora and cool upland air year-round.</dd>
-        </div>
-        <div class="rv" style="--d:5">
-          <dt>Handcrafted Comfort Foods</dt>
-          <dd>Filipino-inspired brunch favorites paired with daily baked ensaymada and artisan tarts.</dd>
-        </div>
-      </dl>
+        <button class="button" type="button" id="mb-next">Next &rarr;</button>
+      </div>
+      <a class="menu-call reveal" href="https://www.google.com/maps/search/?api=1&amp;query=Brew+%26+Bites+Caf%C3%A9+St+Ann+MO" target="_blank" rel="noopener noreferrer">Find us on Google Maps</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- INTERACTIVE MENU SECTION WITH RICH VISUAL CARDS -->
-<section class="menu" id="menu">
-  <div class="wrap">
-    <div class="menu-head rv">
-      <h2>What's brewing in the garden</h2>
-      <p>A taste of our seasonal counter menu. Daily specialty drip and fresh pastries are written on the wooden board inside.</p>
-    </div>
-    
-    <div class="tabs" role="tablist" aria-label="Menu categories" id="tabs"></div>
-    <div class="grid" id="panel" role="tabpanel" aria-live="polite"></div>
-    
-    <p class="note">All prices in Philippine Pesos (₱). Menu items updated for Cafe Carolina Mendez.</p>
-  </div>
-</section>
-
-<!-- LOCATION / MAP SECTION -->
-<section class="find" id="visit">
-  <div class="wrap">
-    <div>
-      <h2 class="rv">Find your garden hideaway</h2>
-      <p class="addr rv" style="--d:1">
-        Cafe Carolina, Mendez-Nuñez / Tagaytay Ridge Road Area
-        <small>Mendez, Cavite, Philippines (Near Tagaytay City line)</small>
-      </p>
-      
-      <dl class="hours rv" style="--d:2">
-        <div><dt>Monday to Thursday</dt><dd>7:00 AM – 8:00 PM</dd></div>
-        <div><dt>Friday & Saturday</dt><dd>7:00 AM – 9:30 PM</dd></div>
-        <div><dt>Sunday</dt><dd>7:00 AM – 9:00 PM</dd></div>
-      </dl>
-      
-      <div class="contact rv" style="--d:3">
-        <a class="btn btn-primary" href="https://www.google.com/maps/place/Cafe+Carolina/@14.1350908,120.9324159,12z" target="_blank" rel="noopener">Open Google Maps</a>
-        <a class="btn btn-ghost" href="tel:+639170000000">Call Cafe</a>
-        <a class="btn btn-ghost" href="#journal">Inquire Event</a>
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="section-title reveal"><h2 class="reveal" id="about-title">About Us</h2></div>
+      <div class="about-intro">
+        <img class="about-photo reveal" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Coffee being poured at a cafe table" loading="lazy" />
+        <div class="about-copy reveal">
+          <h3 class="reveal">Your neighborhood cafe</h3>
+          <p class="reveal">Brew &amp; Bites Café is a neighborhood cafe in St. Ann, Missouri. Stop in for a coffee break, and check with the cafe for today's menu and hours.</p>
+        </div>
       </div>
     </div>
-    
-    <!-- Interactive Map Graphic -->
-    <div class="map rv" style="--d:2">
-      <svg viewBox="0 0 560 420" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustrated map showing Cafe Carolina near Mendez and Tagaytay ridge roads">
-        <rect class="m-land" width="560" height="420"/>
-        <!-- Taal Lake Vector Graphic -->
-        <path class="m-water" d="M-10 330C90 300 150 360 260 345S470 290 570 330V430H-10Z"/>
-        <!-- Pine & Orchard Gardens -->
-        <path class="m-park" d="M300 -10H570V150C500 120 430 160 380 110S330 60 300 -10Z"/>
-        <path class="m-park" d="M-10 40C60 20 120 70 150 130S90 210 -10 190Z"/>
-        <!-- Contour Lines (Highlands) -->
-        <g class="m-contour">
-          <path d="M-10 250C100 220 200 270 300 240S480 200 570 230"/>
-          <path d="M-10 270C110 245 205 292 300 262S480 225 570 252"/>
-          <path d="M30 120C120 90 180 150 270 120"/>
-        </g>
-        <!-- Ridge & Highway Roads -->
-        <path class="m-road" stroke-width="14" d="M-10 215C120 190 230 250 380 232S520 180 570 190"/>
-        <path class="m-road" stroke-width="8" d="M200 -10C220 80 190 150 260 230S330 330 310 430"/>
-        <path class="m-road" stroke-width="6" d="M380 232C400 290 460 320 520 430"/>
-        
-        <!-- Map Labels -->
-        <text class="m-label" x="46" y="204" transform="rotate(-6 46 204)">Tagaytay - Mendez Rd</text>
-        <text class="m-label" x="214" y="90" transform="rotate(80 214 90)">Mendez Town Way</text>
-        <text class="m-label" x="60" y="108">Coffee Orchards</text>
-        <text class="m-label" x="280" y="375">Taal Ridge Outlook</text>
-        
-        <!-- Pulsing Map Pin -->
-        <g><circle class="pulse" cx="320" cy="210" r="26" fill="#C86D51"/></g>
-        <g class="pin" id="pin" tabindex="0" role="button" aria-label="Show Cafe Carolina details" aria-expanded="false">
-          <path d="M320 240c-26-30-38-46-38-64a38 38 0 0 1 76 0c0 18-12 34-38 64Z" fill="#C86D51" stroke="#2C221E" stroke-width="3"/>
-          <circle cx="320" cy="176" r="13" fill="#FBF9F5"/>
-        </g>
-      </svg>
-      
-      <!-- Interactive Map Popover -->
-      <div class="pop" id="pop" hidden>
-        <strong>Cafe Carolina</strong>
-        Mendez-Nuñez / Tagaytay Road, Cavite. Look for the rustic wooden sign and garden arch gateway.
+  </section>
+
+  <section class="section location-section" id="location" aria-labelledby="location-title">
+    <div class="container">
+      <div class="section-title reveal"><h2 class="reveal" id="location-title">Store Location</h2></div>
+      <div class="location-grid">
+        <img class="location-photo reveal" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Warm cafe interior with tables and pendant lights" loading="lazy" />
+        <div class="map-frame reveal">
+          <iframe title="Map to Brew &amp; Bites Café in St. Ann, Missouri" src="https://www.google.com/maps?q=38.7158054,-90.3889022&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="location-copy reveal">
+        <div>
+          <h3>Brew &amp; Bites Café</h3>
+          <p>St. Ann, Missouri</p>
+        </div>
+        <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Brew+%26+Bites+Caf%C3%A9+St+Ann+MO" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="section reviews-section" id="reviews" aria-labelledby="reviews-title">
+    <div class="container">
+      <div class="section-title reveal"><h2 class="reveal" id="reviews-title">Customer Reviews</h2></div>
+      <div class="reviews-grid">
+        <div class="review-copy reveal">
+          <h3>See what customers say</h3>
+          <p>Read recent reviews, browse photos and check today's hours on Google Maps.</p>
+          <a class="review-link" href="https://www.google.com/maps/search/?api=1&amp;query=Brew+%26+Bites+Caf%C3%A9+St+Ann+MO" target="_blank" rel="noopener noreferrer">Read reviews on Google</a>
+        </div>
+        <div class="contact-copy reveal" id="contact">
+          <h3>Visit Us</h3>
+          <p>Looking for the cafe? Open Google Maps for directions, opening hours and contact details.</p>
+          <div class="contact-actions">
+            <a class="button" href="https://www.google.com/maps/search/?api=1&amp;query=Brew+%26+Bites+Caf%C3%A9+St+Ann+MO" target="_blank" rel="noopener noreferrer">Get directions</a>
+            <a class="button button-outline" href="#location">Store location</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="footer-brand" href="#top">Brew &amp; Bites Café</a>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#about">About</a><a href="#menu">Cafe favorites</a><a href="#location">Location</a><a href="#reviews">Reviews</a>
+      </nav>
+    </div>
+  </footer>
 </main>
 
-<!-- FOOTER / JOURNAL -->
-<footer id="journal">
-  <div class="wrap">
-    <div>
-      <h3>Cafe Carolina</h3>
-      <p>A cozy garden hideaway serving hand-poured Batangas coffee, artisanal pastries, and warm Filipino comfort food in Mendez, Cavite.</p>
-    </div>
-    
-    <div>
-      <h3>The Garden Journal</h3>
-      <p>Subscribe for our monthly letter: seasonal roast releases, weekend garden music, and quiet updates. No spam, ever.</p>
-      <form class="journal" id="jform">
-        <label for="em" style="position:absolute;left:-9999px">Email address</label>
-        <input id="em" type="email" required placeholder="your@email.com" autocomplete="email">
-        <button class="btn btn-primary" type="submit">Subscribe</button>
-      </form>
-      <p class="thanks" id="thanks" role="status"></p>
-    </div>
-    
-    <div>
-      <h3>Connect</h3>
-      <ul>
-        <li><a href="https://www.google.com/maps/place/Cafe+Carolina/@14.1350908,120.9324159,12z" target="_blank" rel="noopener">Google Maps Reviews</a></li>
-        <li><a href="#">Instagram (@cafecarolina.mendez)</a></li>
-        <li><a href="#">Facebook Page</a></li>
-        <li><a href="#">TikTok Highlights</a></li>
-      </ul>
-    </div>
-  </div>
-  
-  <div class="wrap legal">
-    <span>© <span id="yr">2026</span> Cafe Carolina Mendez. All rights reserved.</span>
-    <span>Crafted with care for Cavite's highland coffee culture.</span>
-  </div>
-</footer>
-
 <script>
-(function(){
-  var d = document, root = d.documentElement;
-  root.classList.add('js');
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.getElementById("mobile-menu");
+menuToggle.addEventListener("click", () => {
+  const isOpen = mobileMenu.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+});
+mobileMenu.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+  });
+});
 
-  // Header Scroll State
-  var top = d.getElementById('top');
-  function onScroll(){ top.classList.toggle('solid', window.scrollY > window.innerHeight * 0.5); }
-  addEventListener('scroll', onScroll, {passive: true});
-  onScroll();
+if ("IntersectionObserver" in window) {
+  document.querySelectorAll("section").forEach((section) => {
+    section.querySelectorAll(".reveal").forEach((item, index) => {
+      item.style.setProperty("--reveal-delay", `${Math.min(index, 4) * 65}ms`);
+    });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+  document.documentElement.classList.add("js-ready");
+}
 
-  // Dark/Light Theme Toggle
-  var themeBtn = d.getElementById('themeBtn');
-  function setTheme(mode) {
-    if(mode === 'dark') {
-      root.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-    }
+/* ===== Menu data: item = [name, price, description, tag] ===== */
+const NOTE = "Prices and availability may change. Please confirm with the cafe.";
+const MENU = [
+  { label: "Coffee", title: "Coffee", sub: "Classic cups, made to order.", note: NOTE, items: [
+    ["Espresso", "Ask for price", "A concentrated shot, rich and bold. The foundation of every cup."],
+    ["Americano", "Ask for price", "Espresso lengthened with hot water for a smooth, lighter cup."],
+    ["Cafe Latte", "Ask for price", "Espresso with steamed milk and a soft layer of foam."],
+    ["Spanish Latte", "Ask for price", "A sweeter latte of espresso, milk and condensed milk.", "Also mentioned in Google reviews"]
+  ]},
+  { label: "Breakfast", title: "Breakfast", sub: "Featured favorites to start your day.", items: [
+    ["Croissant Sandwich", "$8.50", "Scrambled eggs, cheese, and your choice of meat."],
+    ["Croissant Mexicano", "$8.95", "Egg, cheese, lettuce, tomato, onion, mayo, jalapeño, ham."],
+    ["El Avocado Toast", "$11.50 – $13.25", "Whole grain toast, fresh avocado, sea salt.", "Try it with eggs!"],
+    ["El Breakfast Burrito", "$8.75 – $8.99", "Scrambled eggs, potatoes, cheese, and your choice of sausage or chorizo in a flour tortilla."],
+    ["Breakfast Tacos", "$8.50"],
+    ["Omelette", "$13.85 – $13.99", "Three eggs, spinach, onions, bell peppers, cheese, salt and pepper, with ham, sausage, or bacon."],
+    ["Los Huevos Rancheros", "$11.99", "Two fried eggs, refried beans, melted cheese, sour cream and queso fresco on a crispy corn tortilla, with pico de gallo."]
+  ]},
+  { label: "Platters", title: "Platters &amp; Pancakes", sub: "Hearty plates and stacks.", items: [
+    ["Biscuit &amp; Gravy", "$3.99 – $5.99", "Classic American biscuits and gravy."],
+    ["Biscuits &amp; Gravy Platter", "$13.99", "Two biscuits and gravy with hash browns, toast, two eggs, and ham, bacon, or sausage."],
+    ["3 Pancakes", "$5.99 – $6.75"],
+    ["Pancake Platter", "$13.99", "Two eggs, hash browns, toast, two pancakes and your choice of meat."],
+    ["Chilaquiles", "$13.99", "Corn tortilla strips sauteed in red or green salsa, with egg, pico de gallo, cheese and sour cream.", "Recommended with steak or chicken!"]
+  ]},
+  { label: "Mains", title: "Mains", sub: "Burritos, burgers and more.", items: [
+    ["Tacos", "$3.80", "Comes with onion and cilantro."],
+    ["El Burrito Loco", "$13.99", "Refried beans, chicken, rice, sauteed onions, jalapeños and queso fresco.", "Served with a side of fries"],
+    ["La Torta", "$14.45", "Classic Mexican torta with beans, lettuce, tomato, onions, jalapeños, avocado and your choice of meat.", "Served with a side of fries"],
+    ["Cheeseburger", "$12.99", "Pickles, lettuce, tomato, onion, ketchup.", "Served with a side of fries"],
+    ["Avocado Blazer Burger", "$13.99", "Cheese, lettuce, bacon, avocado, salsa roja, pickles, jalapeños, mayo, ketchup.", "Served with a side of fries"],
+    ["Quesadilla", "$14.45", "Mixed veggies (bell pepper and onion), sour cream, pico de gallo.", "Served with a small side salad and rice"],
+    ["Philly Cheesesteak", "$13.99", "Onions, green peppers, cheese, mayo.", "Served with a side of fries"]
+  ]},
+  { label: "Sweets", title: "Crepes &amp; Sweets", sub: "Sweet, salty, or spicy.", items: [
+    ["Spicy Crepe", "$14.50", "Fried egg, chorizo, onion, jalapeños, cheese, bell peppers."],
+    ["Sweet Crepe", "$12.99 – $15.99", "Strawberries, blueberries, or banana, with Nutella and powdered sugar."],
+    ["Salty Crepe", "$12.85", "Ham and cheese."],
+    ["Mini Pancakes", "$8.99"],
+    ["Churros", "$2.99 – $8.99"]
+  ]},
+  { label: "Sides", title: "Bowls &amp; Sides", sub: "Lighter plates and add-ons.", note: NOTE, items: [
+    ["Classic Salad", "$10.99", "Lettuce, cucumber, onions, tomatoes, cheese, croutons and your choice of dressing."],
+    ["Rice and Bean Bowl", "$13.50", "Rice, black beans, cilantro, lettuce, tomato, cucumbers and grilled chicken."],
+    ["Papas Locas", "$14.99", "Fries with chorizo, steak, sour cream, and cheese."],
+    ["French Fries", "$3.99"],
+    ["Side of Rice", "$2.99"],
+    ["Side of Beans", "$2.99"]
+  ]}
+];
+
+(() => {
+  const book = document.getElementById("menu-book");
+  if (!book) return;
+
+  /* Build menu pages */
+  const pad = (n) => String(n).padStart(2, "0");
+  const li = ([name, price, desc, tag]) =>
+    `<li class="mb-item"><div class="mb-line"><h4>${name}</h4><i></i><span class="mb-price">${price}</span></div>` +
+    (desc ? `<p>${desc}</p>` : "") + (tag ? `<span class="mb-tag">${tag}</span>` : "") + `</li>`;
+  let html = MENU.map((p, i) =>
+    `<article class="mb-page" aria-label="${p.label}" hidden><header class="mb-head"><span class="mb-kicker">Page ${pad(i + 2)} &middot; ${p.label}</span><h3>${p.title}</h3><p>${p.sub}</p></header>` +
+    `<ul class="mb-items">${p.items.map(li).join("")}</ul>${p.note ? `<p class="mb-note">${p.note}</p>` : ""}</article>`
+  ).join("");
+  html += `<article class="mb-page" aria-label="Find us" hidden><header class="mb-head"><span class="mb-kicker">Page ${pad(MENU.length + 2)} &middot; Visit us</span><h3>Find us</h3><p>Stop in for a coffee break in St. Ann.</p></header>` +
+    `<dl class="mb-facts"><div><dt>Location</dt><dd>St. Ann, Missouri</dd></div><div><dt>Directions</dt><dd><a href="https://www.google.com/maps/search/?api=1&query=Brew+%26+Bites+Caf%C3%A9+St+Ann+MO" target="_blank" rel="noopener noreferrer">Open in Google Maps</a></dd></div><div><dt>Hours</dt><dd>See today's hours on Google Maps</dd></div></dl>` +
+    `<a class="button" href="https://www.google.com/maps/search/?api=1&query=Brew+%26+Bites+Caf%C3%A9+St+Ann+MO" target="_blank" rel="noopener noreferrer">Get directions</a></article>`;
+  book.insertAdjacentHTML("beforeend", html);
+
+  const pages = [...book.querySelectorAll(".mb-page")];
+  const tabs = [...document.querySelectorAll(".mb-tab")];
+  const prev = document.getElementById("mb-prev");
+  const next = document.getElementById("mb-next");
+  const count = document.getElementById("mb-count");
+  const controls = document.getElementById("mb-controls");
+  const closeBtn = document.getElementById("mb-close");
+  const cover = pages[0];
+  const wide = window.matchMedia("(min-width: 861px)");
+  let isOpen = false;
+  let index = 0;
+
+  const stepSize = () => (wide.matches ? 2 : 1);
+
+  function revealPage(page, direction, delay) {
+    page.classList.remove("turn-fwd", "turn-back");
+    void page.offsetWidth; // restart the animation
+    page.style.setProperty("--turn-delay", `${delay}ms`);
+    page.classList.add(direction < 0 ? "turn-back" : "turn-fwd");
+    page.addEventListener("animationend", () => page.classList.remove("turn-fwd", "turn-back"), { once: true });
   }
-  var savedTheme = localStorage.getItem('theme');
-  if(savedTheme) setTheme(savedTheme);
 
-  themeBtn.addEventListener('click', function(){
-    var isDark = root.getAttribute('data-theme') === 'dark' || (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    setTheme(isDark ? 'light' : 'dark');
+  function popBook() {
+    book.classList.remove("book-in");
+    void book.offsetWidth;
+    book.classList.add("book-in");
+    book.addEventListener("animationend", () => book.classList.remove("book-in"), { once: true });
+  }
+
+  function render(animate, direction = 1) {
+    const step = isOpen ? stepSize() : 1;
+    if (!isOpen) index = 0;
+    else if (step === 2) index -= index % 2;
+    book.classList.toggle("closed", !isOpen);
+    pages.forEach((page, n) => {
+      const on = isOpen ? n >= index && n < index + step : n === 0;
+      page.hidden = !on;
+      if (on && animate && n !== 0) {
+        revealPage(page, direction, step === 2 && n === index + 1 ? 90 : 0);
+      } else if (!on) {
+        page.classList.remove("turn-fwd", "turn-back");
+      }
+    });
+    tabs.forEach((tab) => {
+      const n = Number(tab.dataset.go);
+      tab.setAttribute("aria-current", String(isOpen ? n >= index && n < index + step : n === 0));
+    });
+    controls.hidden = !isOpen;
+    prev.disabled = index === 0;
+    next.disabled = index + step >= pages.length;
+    const last = Math.min(index + step, pages.length);
+    count.textContent = step === 2
+      ? `Pages ${index + 1}\u2013${last} of ${pages.length}`
+      : `Page ${index + 1} of ${pages.length}`;
+    book.setAttribute("aria-label", isOpen
+      ? "Brew & Bites Café menu book, open. Use the left and right arrow keys to turn pages."
+      : "Brew & Bites Café menu book, closed. Press the Open the menu button, or the right arrow key, to open it.");
+  }
+
+  function openBook(n) {
+    isOpen = true;
+    index = typeof n === "number" ? n : (wide.matches ? 0 : 1);
+    popBook();
+    render(true, 1);
+  }
+
+  function closeBook() {
+    isOpen = false;
+    popBook();
+    render(true, -1);
+  }
+
+  function go(n) {
+    if (!isOpen) return openBook(n <= 0 ? undefined : n);
+    if (n <= 0 && !wide.matches) return closeBook();
+    const previousIndex = index;
+    index = Math.max(0, Math.min(pages.length - 1, n));
+    render(true, index < previousIndex ? -1 : 1);
+  }
+
+  cover.addEventListener("click", () => { if (!isOpen) openBook(); });
+  closeBtn.addEventListener("click", closeBook);
+  prev.addEventListener("click", () => go(index - stepSize()));
+  next.addEventListener("click", () => go(index + stepSize()));
+  tabs.forEach((tab) => tab.addEventListener("click", () => {
+    const n = Number(tab.dataset.go);
+    if (n === 0) closeBook(); else go(n);
+  }));
+
+  book.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") go(isOpen ? index + stepSize() : 1);
+    if (e.key === "ArrowLeft" && isOpen) go(index - stepSize());
   });
 
-  // Cafe Carolina Customized Menu Data with Warm Visual Photography
-  var MENU = {
-    "Signature Brews": [
-      {
-        name: "Batangas Barako Pour-Over",
-        price: 145,
-        desc: "Dark roasted Liberica beans dripping slow into ceramic, presenting bold woody notes and dark chocolate aroma.",
-        vibe: "Local Classic",
-        img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Calamansi Cold Brew",
-        price: 165,
-        desc: "18-hour steep infused with fresh Cavite calamansi citrus and organic wild honey over clear ice.",
-        vibe: "Best Seller",
-        img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Tablea Highland Mocha",
-        price: 180,
-        desc: "Pure Alfonso roasted cacao blended with double espresso, warm steamed milk and microfoam.",
-        vibe: "Comfort Brew",
-        img: "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Muscovado Oat Latte",
-        price: 170,
-        desc: "Unrefined raw brown sugar syrup, creamy oat milk, and rich highland espresso with cinnamon dust.",
-        vibe: "House Special",
-        img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80"
-      }
-    ],
-    "Artisan Pastries": [
-      {
-        name: "Queso de Bola Ensaymada",
-        price: 135,
-        desc: "Pillowy brioche brushed with real anchor butter, fine sugar, and topped with aged grated queso de bola.",
-        vibe: "Baked Dawn Daily",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Almond Garden Croissant",
-        price: 155,
-        desc: "Twice-baked butter croissant generously filled with sweet almond frangipane and flaked almonds.",
-        vibe: "Best Seller",
-        img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Tablea Chocolate Tart",
-        price: 185,
-        desc: "Silky dark chocolate ganache in a crisp buttery shortcrust shell finished with sea salt flakes.",
-        vibe: "Decadent",
-        img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Pandan Coconut Kouign-Amann",
-        price: 150,
-        desc: "Caramelized flaky pastry layered with aromatic fresh pandan extract and toasted coconut flakes.",
-        vibe: "Limited Daily",
-        img: "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&w=800&q=80"
-      }
-    ],
-    "Comfort Brunch": [
-      {
-        name: "Cavite Longganisa Skillet",
-        price: 350,
-        desc: "Garlicky native longganisa sausages, sunny farm eggs, fragrant garlic fried rice and calamansi salsa.",
-        vibe: "Brunch Favorite",
-        img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Mushroom & Ricotta Sourdough",
-        price: 310,
-        desc: "Sautéed upland wild mushrooms, herb-infused ricotta spread on thick-cut toasted sourdough.",
-        vibe: "Vegetarian",
-        img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Pressed Chicken Pesto Panini",
-        price: 335,
-        desc: "Herbed roasted chicken breast, house-made basil pesto, and melted mozzarella on toasted ciabatta.",
-        vibe: "Fresh & Hearty",
-        img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Carolina Garden Salad",
-        price: 290,
-        desc: "Crisp garden greens, toasted nuts, kesong puti cheese, and calamansi vinaigrette dressing.",
-        vibe: "Light & Crisp",
-        img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
-      }
-    ],
-    "Seasonal Drinks": [
-      {
-        name: "Sampaguita Jasmine Iced Tea",
-        price: 140,
-        desc: "Steeped green tea scented with native white blossoms and crushed ice.",
-        vibe: "Refreshing",
-        img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        name: "Highland Strawberry Fizz",
-        price: 160,
-        desc: "Fresh La Trinidad strawberries, sparkling water, mint leaves and lime squeeze.",
-        vibe: "Chilled Special",
-        img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80"
-      }
-    ]
-  };
+  let startX = null;
+  book.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  book.addEventListener("touchend", (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    startX = null;
+    if (Math.abs(dx) < 50) return;
+    if (!isOpen) { if (dx < 0) openBook(); return; }
+    go(index + (dx < 0 ? stepSize() : -stepSize()));
+  });
 
-  // Render Interactive Menu Tabs & Visual Item Grid
-  var tabsContainer = d.getElementById('tabs');
-  var panelContainer = d.getElementById('panel');
-  var categories = Object.keys(MENU);
-  var currentCat = categories[0];
-
-  function renderTabs() {
-    tabsContainer.innerHTML = '';
-    categories.forEach(function(cat) {
-      var btn = d.createElement('button');
-      btn.className = 'tab';
-      btn.type = 'button';
-      btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-selected', cat === currentCat ? 'true' : 'false');
-      btn.textContent = cat;
-      btn.addEventListener('click', function() {
-        if (currentCat !== cat) {
-          currentCat = cat;
-          renderTabs();
-          renderPanel();
-        }
-      });
-      tabsContainer.appendChild(btn);
-    });
-  }
-
-  function renderPanel() {
-    panelContainer.innerHTML = '';
-    var items = MENU[currentCat] || [];
-    items.forEach(function(item, idx) {
-      var card = d.createElement('article');
-      card.className = 'item';
-      card.style.setProperty('--i', idx);
-
-      var imgFrame = d.createElement('div');
-      imgFrame.className = 'item-img-frame';
-
-      var img = d.createElement('img');
-      img.className = 'item-img';
-      img.src = item.img;
-      img.alt = item.name;
-      img.loading = 'lazy';
-      img.onerror = function() {
-        this.src = 'https://placehold.co/800x500/2C221E/F4ECE0?text=' + encodeURIComponent(item.name);
-      };
-
-      imgFrame.appendChild(img);
-
-      var content = d.createElement('div');
-      content.className = 'item-content';
-
-      var header = d.createElement('header');
-      var h3 = d.createElement('h3');
-      h3.textContent = item.name;
-
-      var price = d.createElement('span');
-      price.className = 'price';
-      price.textContent = '₱' + item.price;
-
-      header.appendChild(h3);
-      header.appendChild(price);
-
-      var desc = d.createElement('p');
-      desc.textContent = item.desc;
-
-      var vibe = d.createElement('span');
-      vibe.className = 'vibe-tag';
-      vibe.textContent = item.vibe;
-
-      content.appendChild(header);
-      content.appendChild(desc);
-      content.appendChild(vibe);
-
-      card.appendChild(imgFrame);
-      card.appendChild(content);
-
-      panelContainer.appendChild(card);
-    });
-  }
-
-  renderTabs();
-  renderPanel();
-
-  // Map Pin Interaction
-  var pin = d.getElementById('pin');
-  var pop = d.getElementById('pop');
-  if (pin && pop) {
-    function togglePop() {
-      var isHidden = pop.hasAttribute('hidden');
-      if (isHidden) {
-        pop.removeAttribute('hidden');
-        pin.setAttribute('aria-expanded', 'true');
-      } else {
-        pop.setAttribute('hidden', '');
-        pin.setAttribute('aria-expanded', 'false');
-      }
-    }
-    pin.addEventListener('click', togglePop);
-    pin.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        togglePop();
-      }
-    });
-  }
-
-  // Journal Newsletter Form
-  var jform = d.getElementById('jform');
-  var thanks = d.getElementById('thanks');
-  if (jform) {
-    jform.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var input = d.getElementById('em');
-      if (input && input.value) {
-        thanks.textContent = "Salamat! You're subscribed to updates from the garden.";
-        input.value = '';
-        setTimeout(function() { thanks.textContent = ''; }, 6000);
-      }
-    });
-  }
-
-  // Scroll Reveal Animations
-  var reveals = d.querySelectorAll('.rv');
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    reveals.forEach(function(el) { observer.observe(el); });
-  } else {
-    reveals.forEach(function(el) { el.classList.add('in'); });
-  }
-
-  // Dynamic Year Footer
-  var yr = d.getElementById('yr');
-  if (yr) yr.textContent = new Date().getFullYear();
+  wide.addEventListener("change", () => render(false));
+  render(false);
 })();
 </script>
 </body>
